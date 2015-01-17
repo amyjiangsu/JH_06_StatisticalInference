@@ -65,6 +65,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 5%
 17%
 11%</code></pre>
+<pre class="r"><code>p.union &lt;- 0.17
+p.father  &lt;- 0.12
+p.both &lt;- 0.06
+p.union - p.father + p.both</code></pre>
+<pre><code>## [1] 0.11</code></pre>
 </div>
 <div id="question-2" class="section level3">
 <h3>Question 2</h3>
@@ -74,15 +79,19 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 0.50
 0.10
 0.75</code></pre>
+<pre class="r"><code>punif(0.75, 0, 1)</code></pre>
+<pre><code>## [1] 0.75</code></pre>
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
 <p>You are playing a game with a friend where you flip a coin and if it comes up heads you give her X dollars and if it comes up tails she gives you Y dollars. The probability that the coin is heads is p (some number between 0 and 1.) What has to be true about X and Y to make so that both of your expected total earnings is 0. The game would then be called “fair”.</p>
 <p>(Hints, look at Lecture 4 from 0 to 6:50 and Homework 1 page 5/10. Also, for further reading on fair games and gambling, start with the Dutch Book problem ).</p>
-<pre><code>p1−p=YX
-p1−p=XY
+<pre><code>p/(1−p)=Y/X
+p/(1−p)=X/Y
 X=Y
 p=XY</code></pre>
+<pre><code>p*(X) = (1-p)*Y
+=&gt; p/(1-p)=Y/X</code></pre>
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
@@ -92,6 +101,7 @@ p=XY</code></pre>
 The median must be different from the mean.
 The median must be 1.
 The median must be 0.</code></pre>
+<pre><code>Answer: The median must be 0.</code></pre>
 </div>
 <div id="question-5" class="section level3">
 <h3>Question 5</h3>
@@ -105,6 +115,12 @@ The median must be 0.</code></pre>
 1
 3
 4</code></pre>
+<pre class="r"><code>x &lt;- 1:4
+p &lt;- x/sum(x)
+temp &lt;- rbind(x, p)
+rownames(temp) &lt;- c(&quot;X&quot;, &quot;Prob&quot;)
+sum(temp[1,]*temp[2,])</code></pre>
+<pre><code>## [1] 3</code></pre>
 </div>
 <div id="question-6" class="section level3">
 <h3>Question 6</h3>
@@ -114,6 +130,11 @@ The median must be 0.</code></pre>
 40%
 10%
 30%</code></pre>
+<pre class="r"><code># true.posive/(true.posive + false.negative) = 0.75
+# true.negative/(true.negative + false.positive) = 0.52
+# (true.positive + false.negative) / (true.positive + false.negative + true.negative + false.positive) = 0.3
+0.75*0.3/(0.75*0.3 + 0.48*0.7)</code></pre>
+<pre><code>## [1] 0.4010695</code></pre>
 </div>
 
 

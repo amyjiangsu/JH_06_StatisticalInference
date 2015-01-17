@@ -61,9 +61,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h3>Question 1</h3>
 <p>What is the variance of the distribution of the average an IID draw of n observations from a population with mean μ and variance σ2.</p>
 <p><span class="math">\(\sigma^2\)</span></p>
-<p><span class="math">\(\over{\sigma^2, n}\)</span></p>
+<p><span class="math">\(\sigma^2/n\)</span></p>
 <p><span class="math">\(2\sigma/\sqrt(n)\)</span></p>
 <p><span class="math">\(\sigma/n\)</span></p>
+<pre><code>sigma^2/n</code></pre>
 </div>
 <div id="question-2" class="section level3">
 <h3>Question 2</h3>
@@ -72,6 +73,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 8%
 22%
 32%</code></pre>
+<pre class="r"><code>pnorm(70, 80, 10)</code></pre>
+<pre><code>## [1] 0.1586553</code></pre>
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
@@ -80,6 +83,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 approximately 1223
 approximately 1247
 approximately 977</code></pre>
+<pre class="r"><code>qnorm(0.95, 1100, 75)</code></pre>
+<pre><code>## [1] 1223.364</code></pre>
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
@@ -88,6 +93,8 @@ approximately 977</code></pre>
 approximately 1110 cc
 approximately 1088 cc
 approximately 1112 cc</code></pre>
+<pre class="r"><code>qnorm(0.95, 1100, 75/10)</code></pre>
+<pre><code>## [1] 1112.336</code></pre>
 </div>
 <div id="question-5" class="section level3">
 <h3>Question 5</h3>
@@ -96,6 +103,8 @@ approximately 1112 cc</code></pre>
 12%
 3%
 19%</code></pre>
+<pre class="r"><code>dbinom(4, 5, 0.5) + dbinom(5, 5, 0.5)</code></pre>
+<pre><code>## [1] 0.1875</code></pre>
 </div>
 <div id="question-6" class="section level3">
 <h3>Question 6</h3>
@@ -104,6 +113,9 @@ approximately 1112 cc</code></pre>
 95%
 34%
 68%</code></pre>
+<pre class="r"><code>sample.mean  &lt;- 15
+sample.sigma &lt;- 10/sqrt(100)
+# empirical rule: sample.mean +- 1 * sample.sigma = 68%</code></pre>
 </div>
 <div id="question-7" class="section level3">
 <h3>Question 7</h3>
@@ -112,6 +124,7 @@ approximately 1112 cc</code></pre>
 0.25
 0.10
 0.75</code></pre>
+<pre><code>Answer: 0.5</code></pre>
 </div>
 <div id="question-8" class="section level3">
 <h3>Question 8</h3>
@@ -120,6 +133,8 @@ approximately 1112 cc</code></pre>
 0.06
 0.03
 0.08</code></pre>
+<pre class="r"><code>ppois(10, 15)</code></pre>
+<pre><code>## [1] 0.1184644</code></pre>
 </div>
 
 

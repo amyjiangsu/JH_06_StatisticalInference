@@ -64,6 +64,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 [1080, 1120]
 [1077,1123]
 [1092, 1108]</code></pre>
+<pre class="r"><code>t.interval &lt;- qt(0.975, 9-1) * 30 / sqrt(9)
+1100 + t.interval; 1100 - t.interval</code></pre>
+<pre><code>## [1] 1123.06</code></pre>
+<pre><code>## [1] 1076.94</code></pre>
 </div>
 <div id="question-2" class="section level3">
 <h3>Question 2</h3>
@@ -72,6 +76,12 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 2.10
 0.30
 1.50</code></pre>
+<pre class="r"><code>qt(0.975, 9-1)</code></pre>
+<pre><code>## [1] 2.306004</code></pre>
+<pre class="r"><code># -2 + 2.306004*x / sqrt(9) = 0
+# =&gt; 2.306004*x = 2*3
+6/2.306004</code></pre>
+<pre><code>## [1] 2.601904</code></pre>
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
@@ -80,6 +90,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 It's necessary to use both
 Independent groups, since all subjects were seen under both systems
 You could use either</code></pre>
+<pre><code>Answer: A paired interval</code></pre>
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
@@ -88,6 +99,11 @@ You could use either</code></pre>
 [1.29, 2.70]
 [-2,70, -1.29]
 [-2.75, -1.25]</code></pre>
+<pre class="r"><code>t.interval &lt;- qt(0.975, df=(10 + 10 -2))
+mean.diff &lt;- 3 - 5
+var.diff  &lt;- (sqrt(0.68 * 9 + 0.60 * 9))/sqrt(10 + 10 -2)
+mean.diff + c(-1, 1) * var.diff * t.interval * sqrt(1/10 + 1/10)</code></pre>
+<pre><code>## [1] -2.751649 -1.248351</code></pre>
 </div>
 <div id="question-5" class="section level3">
 <h3>Question 5</h3>
@@ -96,6 +112,7 @@ You could use either</code></pre>
 The interval will be narrower.
 It is impossible to tell.
 The interval will be the same width, but shifted.</code></pre>
+<pre><code>Answer: The interval will be narrower.</code></pre>
 </div>
 <div id="question-6" class="section level3">
 <h3>Question 6</h3>
@@ -104,6 +121,12 @@ The interval will be the same width, but shifted.</code></pre>
 When subtracting (old - new) the interval is entirely above zero. The new system appears to be effective.
 When subtracting (old - new) the interval is entirely above zero. The new system does not appear to be effective.
 When subtracting (old - new) the interval contains 0. The new system appears to be effective.</code></pre>
+<pre class="r"><code>t.interval &lt;- qt(0.975, df=(100 + 100 -2))
+mean.diff &lt;- 6 - 4
+var.diff  &lt;- (sqrt(0.5^2 * 99 + 2^2 * 99))/sqrt(100 + 100 -2)
+mean.diff + c(-1, 1) * var.diff * t.interval * sqrt(1/100 + 1/100)</code></pre>
+<pre><code>## [1] 1.593458 2.406542</code></pre>
+<pre class="r"><code># When subtracting (old - new) the interval is entirely above zero. The new system appears to be effective.</code></pre>
 </div>
 <div id="question-7" class="section level3">
 <h3>Question 7</h3>
@@ -112,6 +135,12 @@ When subtracting (old - new) the interval contains 0. The new system appears to 
 [2.636, 5.364]
 [-5.531, -2.469]
 [-5.364, -2.636]</code></pre>
+<pre class="r"><code>t.interval = qt(0.95, 16)
+mean.diff = -3 -1
+#var.diff = (1.5*8 + 1.8*8)/sqrt(9+9-2)
+var.diff = sqrt((8*1.5^2 + 8*1.8^2)/(9+9-2))
+mean.diff + c(-1, 1)* t.interval * var.diff * sqrt(1/9+1/9)</code></pre>
+<pre><code>## [1] -5.363579 -2.636421</code></pre>
 </div>
 
 

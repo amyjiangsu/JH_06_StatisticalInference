@@ -15,6 +15,13 @@ Consider influenza epidemics for two parent heterosexual families. Suppose that 
     5%
     17%
     11%
+    
+```{r}
+p.union <- 0.17
+p.father  <- 0.12
+p.both <- 0.06
+p.union - p.father + p.both
+```
 
 ### Question 2
 
@@ -27,16 +34,25 @@ A random variable, X is uniform, a box from 0 to 1 of height 1. (So that its den
     0.10
     0.75
 
+```{r}
+punif(0.75, 0, 1)
+```
+
 ### Question 3
 
 You are playing a game with a friend where you flip a coin and if it comes up heads you give her X dollars and if it comes up tails she gives you Y dollars. The probability that the coin is heads is p (some number between 0 and 1.) What has to be true about X and Y to make so that both of your expected total earnings is 0. The game would then be called “fair”.
 
 (Hints, look at Lecture 4 from 0 to 6:50 and Homework 1 page 5/10. Also, for further reading on fair games and gambling, start with the Dutch Book problem ).
 
-    p1−p=YX
-    p1−p=XY
+    p/(1−p)=Y/X
+    p/(1−p)=X/Y
     X=Y
     p=XY
+
+```
+p*(X) = (1-p)*Y
+=> p/(1-p)=Y/X
+```
 
 ### Question 4
 
@@ -48,6 +64,10 @@ A density that looks like a normal density (but may or may not be exactly normal
     The median must be different from the mean.
     The median must be 1.
     The median must be 0.
+    
+```
+Answer: The median must be 0.
+```
 
 ### Question 5
 
@@ -72,6 +92,14 @@ What is the mean?
     3
     4
 
+```{r}
+x <- 1:4
+p <- x/sum(x)
+temp <- rbind(x, p)
+rownames(temp) <- c("X", "Prob")
+sum(temp[1,]*temp[2,])
+```
+
 ### Question 6
 
 A web site (www.medicine.ox.ac.uk/bandolier/band64/b64-7.html) for home pregnancy tests cites the following: “When the subjects using the test were women who collected and tested their own samples, the overall sensitivity was 75%. Specificity was also low, in the range 52% to 75%.” Assume the lower value for the specificity. Suppose a subject has a positive test and that 30% of women taking pregnancy tests are actually pregnant. What number is closest to the probability of pregnancy given the positive test?
@@ -83,3 +111,10 @@ A web site (www.medicine.ox.ac.uk/bandolier/band64/b64-7.html) for home pregnanc
     40%
     10%
     30%
+
+```{r}
+# true.posive/(true.posive + false.negative) = 0.75
+# true.negative/(true.negative + false.positive) = 0.52
+# (true.positive + false.negative) / (true.positive + false.negative + true.negative + false.positive) = 0.3
+0.75*0.3/(0.75*0.3 + 0.48*0.7)
+```

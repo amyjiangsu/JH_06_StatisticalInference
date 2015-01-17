@@ -11,11 +11,16 @@ What is the variance of the distribution of the average an IID draw of n observa
 
 $\sigma^2$
 
-$\over{\sigma^2, n}$
+$\sigma^2/n$
 
 $2\sigma/\sqrt(n)$
 
 $\sigma/n$
+
+
+```
+sigma^2/n
+```
 
 ### Question 2
 
@@ -26,6 +31,10 @@ Suppose that diastolic blood pressures (DBPs) for men aged 35-44 are normally di
     22%
     32%
 
+```{r}
+pnorm(70, 80, 10)
+```
+
 ### Question 3
 
 Brain volume for adult women is normally distributed with a mean of about 1,100 cc for women with a standard deviation of 75 cc. What brain volume represents the 95th percentile?
@@ -34,6 +43,10 @@ Brain volume for adult women is normally distributed with a mean of about 1,100 
     approximately 1223
     approximately 1247
     approximately 977
+    
+```{r}
+qnorm(0.95, 1100, 75)
+```
 
 ### Question 4
 
@@ -43,6 +56,10 @@ Refer to the previous question. Brain volume for adult women is about 1,100 cc f
     approximately 1110 cc
     approximately 1088 cc
     approximately 1112 cc
+    
+```{r}
+qnorm(0.95, 1100, 75/10)
+```
 
 ### Question 5
 
@@ -53,6 +70,10 @@ You flip a fair coin 5 times, about what's the probability of getting 4 or 5 hea
     3%
     19%
 
+```{r}
+dbinom(4, 5, 0.5) + dbinom(5, 5, 0.5)
+```
+
 ### Question 6
 
 The respiratory disturbance index (RDI), a measure of sleep disturbance, for a specific population has a mean of 15 (sleep events per hour) and a standard deviation of 10. They are not normally distributed. Give your best estimate of the probability that a sample mean RDI of 100 people is between 14 and 16 events per hour?
@@ -61,6 +82,12 @@ The respiratory disturbance index (RDI), a measure of sleep disturbance, for a s
     95%
     34%
     68%
+    
+```{r}
+sample.mean  <- 15
+sample.sigma <- 10/sqrt(100)
+# empirical rule: sample.mean +- 1 * sample.sigma = 68%
+```
 
 ### Question 7
 
@@ -70,6 +97,10 @@ Consider a standard uniform density. The mean for this density is .5 and the var
     0.25
     0.10
     0.75
+    
+```
+Answer: 0.5
+```
 
 ### Question 8
 
@@ -79,3 +110,7 @@ The number of people showing up at a bus stop is assumed to be Poisson with a me
     0.06
     0.03
     0.08
+
+```{r}
+ppois(10, 15)
+```

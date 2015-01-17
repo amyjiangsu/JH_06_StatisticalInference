@@ -66,6 +66,20 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 0.05
 0.087
 0.10</code></pre>
+<pre class="r"><code>baseline  &lt;- c(140, 138, 150, 148, 135)
+week2 &lt;- c(132, 135, 151, 146, 130)
+t.test(baseline, week2, &quot;two.sided&quot;, paired=T)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  baseline and week2
+## t = 2.2616, df = 4, p-value = 0.08652
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.7739122  7.5739122
+## sample estimates:
+## mean of the differences 
+##                     3.4</code></pre>
 </div>
 <div id="question-2" class="section level3">
 <h3>Question 2</h3>
@@ -74,6 +88,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 1031 to 1169
 1081 to 1119
 1080 to 1120</code></pre>
+<pre class="r"><code>t.interval &lt;- qt(0.975, 8)
+1100 + c(-1, 1)*t.interval*30</code></pre>
+<pre><code>## [1] 1030.82 1169.18</code></pre>
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
@@ -82,6 +99,19 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 0.62
 0.31
 0.005</code></pre>
+<pre class="r"><code>library(stats)
+binom.test(3, 4, alternative = &quot;greater&quot;)</code></pre>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  3 and 4
+## number of successes = 3, number of trials = 4, p-value = 0.3125
+## alternative hypothesis: true probability of success is greater than 0.5
+## 95 percent confidence interval:
+##  0.2486046 1.0000000
+## sample estimates:
+## probability of success 
+##                   0.75</code></pre>
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
@@ -90,6 +120,13 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 0.22
 0.03
 0.52</code></pre>
+<pre class="r"><code>p &lt;- 1 / 100
+pr &lt;- 10 / 1787
+n &lt;- 1787
+serror &lt;- sqrt(p * (1-p) / n)
+z &lt;- (p-pr) / serror
+pnorm(z, lower.tail = F)</code></pre>
+<pre><code>## [1] 0.03066625</code></pre>
 </div>
 <div id="question-5" class="section level3">
 <h3>Question 5</h3>
@@ -98,6 +135,21 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 Less than 0.05, but larger than 0.01
 Larger than 0.10
 Less than 0.01</code></pre>
+<pre class="r"><code>n1 &lt;- 9
+n2 &lt;- 9
+df &lt;- n1 + n2 - 2
+meanTreat &lt;- -3
+meanPlacebo &lt;- 1
+sdTreat &lt;- 1.5
+sdPlacebo &lt;- 1.8
+pooledVar &lt;- (sdTreat^2 * n1 + sdPlacebo^2 * n2)/df
+se.diff &lt;- sqrt(pooledVar/n1 + pooledVar/n2)
+tstat &lt;- (meanTreat - meanPlacebo) / se.diff
+tstat</code></pre>
+<pre><code>## [1] -4.828573</code></pre>
+<pre class="r"><code>pValue &lt;- 2 * pt(tstat, df = df)
+pValue</code></pre>
+<pre><code>## [1] 0.0001852248</code></pre>
 </div>
 <div id="question-6" class="section level3">
 <h3>Question 6</h3>
@@ -106,6 +158,7 @@ Less than 0.01</code></pre>
 <pre><code>Yes you would reject.
 No you wouldn't reject.
 It's impossible to tell.</code></pre>
+<pre><code>Answer: No you wouldn't reject.</code></pre>
 </div>
 <div id="question-7" class="section level3">
 <h3>Question 7</h3>
@@ -114,6 +167,11 @@ It's impossible to tell.</code></pre>
 0.80
 0.60
 0.50</code></pre>
+<pre class="r"><code>n &lt;- 100
+mu &lt;- .01
+sd &lt;- .04
+power.t.test(n, delta = mu, sd = sd, type = &quot;one.sample&quot;, alt = &quot;one.sided&quot;)$power </code></pre>
+<pre><code>## [1] 0.7989855</code></pre>
 </div>
 <div id="question-8" class="section level3">
 <h3>Question 8</h3>
@@ -122,6 +180,9 @@ It's impossible to tell.</code></pre>
 140
 120
 160</code></pre>
+<pre class="r"><code>power &lt;- .9
+power.t.test(power = power, delta = mu, sd = sd, type = &quot;one.sample&quot;, alt = &quot;one.sided&quot;)$n</code></pre>
+<pre><code>## [1] 138.3856</code></pre>
 </div>
 <div id="question-9" class="section level3">
 <h3>Question 9</h3>
@@ -130,6 +191,7 @@ It's impossible to tell.</code></pre>
 You will get larger power.
 No, for real, where does Brian come up with these problems?
 It's impossible to tell given the information in the problem.</code></pre>
+<pre><code>Answer: You will get larger power.</code></pre>
 </div>
 
 

@@ -1,0 +1,40 @@
+---
+title: "Statistical Inference Course Project Part 2"
+author: "Amy Su Jiang"
+date: "October 26, 2014"
+output: pdf_document
+---
+
+# Basic Inferencial Data Analysis
+In this exercise we analyze the ToothGrowth data in the R datasets package. The data is set of 60 observations, length of odontoblasts (teeth) in each of 10 guinea pigs at each of three dose levels of Vitamin C (0.5, 1 and 2 mg) with each of two delivery methods (orange juice or ascorbic acid).
+
+```{r}
+library(datasets)
+library(ggplot2)
+ggplot(data=ToothGrowth, aes(x=as.factor(dose), y=len, fill=supp)) +
+    geom_bar(stat="identity",) +
+    facet_grid(. ~ supp) +
+    xlab("Dose in miligrams") +
+    ylab("Tooth length") +
+    guides(fill=guide_legend(title="Supplement type"))
+```
+
+The above diagram shows a clear positive correlation between the tooth length and the dose levels of Vitamin C, for both supplementary types.
+
+The hypothesis test and confidence internal for the postive correlation between tooth length and the intake dose of VC (Vitamin C) is shown as follows:
+
+```{r}
+ToothVC <- subset(ToothGrowth,supp=="VC")
+VCfit <- lm(len ~ dose, data=ToothVC)
+summary(VCfit)
+confint(VCfit)
+```
+
+The hypothesis test and confidence internal for the postive correlation between tooth length and the intake dose of OJ (Orange Juice) is shown as follows:
+
+```{r}
+ToothOJ <- subset(ToothGrowth,supp=="OJ")
+OJfit <- lm(len ~ dose, data=ToothOJ)
+summary(OJfit)
+confint(OJfit)
+```

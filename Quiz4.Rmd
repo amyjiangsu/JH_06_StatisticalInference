@@ -24,6 +24,12 @@ Consider testing the hypothesis that there was a mean reduction in blood pressur
     0.087
     0.10
 
+```{r}
+baseline  <- c(140, 138, 150, 148, 135)
+week2 <- c(132, 135, 151, 146, 130)
+t.test(baseline, week2, "two.sided", paired=T)
+```
+
 ### Question 2
 
 A sample of 9 men yielded a sample average brain volume of 1,100cc and a standard deviation of 30cc. What is the complete set of values of μ0 that a test of H0:μ=μ0 would fail to reject the null hypothesis in a two sided 5% Students t-test?
@@ -32,6 +38,11 @@ A sample of 9 men yielded a sample average brain volume of 1,100cc and a standar
     1031 to 1169
     1081 to 1119
     1080 to 1120
+
+```{r}
+t.interval <- qt(0.975, 8)
+1100 + c(-1, 1)*t.interval*30
+```
 
 ### Question 3
 
@@ -42,6 +53,11 @@ Researchers conducted a blind taste test of Coke versus Pepsi. Each of four peop
     0.31
     0.005
 
+```{r}
+library(stats)
+binom.test(3, 4, alternative = "greater")
+```
+
 ### Question 4
 
 Infection rates at a hospital above 1 infection per 100 person days at risk are believed to be too high and are used as a benchmark. A hospital that had previously been above the benchmark recently had 10 infections over the last 1,787 person days at risk. About what is the one sided P-value for the relevant test of whether the hospital is *below* the standard?
@@ -50,6 +66,15 @@ Infection rates at a hospital above 1 infection per 100 person days at risk are 
     0.22
     0.03
     0.52
+    
+```{r}
+p <- 1 / 100
+pr <- 10 / 1787
+n <- 1787
+serror <- sqrt(p * (1-p) / n)
+z <- (p-pr) / serror
+pnorm(z, lower.tail = F)
+```
 
 ### Question 5
 
@@ -59,6 +84,22 @@ Suppose that 18 obese subjects were randomized, 9 each, to a new diet pill and a
     Less than 0.05, but larger than 0.01
     Larger than 0.10
     Less than 0.01
+
+```{r}
+n1 <- 9
+n2 <- 9
+df <- n1 + n2 - 2
+meanTreat <- -3
+meanPlacebo <- 1
+sdTreat <- 1.5
+sdPlacebo <- 1.8
+pooledVar <- (sdTreat^2 * n1 + sdPlacebo^2 * n2)/df
+se.diff <- sqrt(pooledVar/n1 + pooledVar/n2)
+tstat <- (meanTreat - meanPlacebo) / se.diff
+tstat
+pValue <- 2 * pt(tstat, df = df)
+pValue
+```
 
 ### Question 6
 
@@ -70,6 +111,10 @@ Where does Brian come up with these questions?
     No you wouldn't reject.
     It's impossible to tell.
 
+```
+Answer: No you wouldn't reject.
+```
+
 ### Question 7
 
 Researchers would like to conduct a study of 100 healthy adults to detect a four year mean brain volume loss of .01 mm3. Assume that the standard deviation of four year volume loss in this population is .04 mm3. About what would be the power of the study for a 5% one sided test versus a null hypothesis of no volume loss?
@@ -78,6 +123,13 @@ Researchers would like to conduct a study of 100 healthy adults to detect a four
     0.80
     0.60
     0.50
+
+```{r}
+n <- 100
+mu <- .01
+sd <- .04
+power.t.test(n, delta = mu, sd = sd, type = "one.sample", alt = "one.sided")$power 
+```
 
 ### Question 8
 
@@ -88,6 +140,11 @@ Researchers would like to conduct a study of n healthy adults to detect a four y
     120
     160
 
+```{r}
+power <- .9
+power.t.test(power = power, delta = mu, sd = sd, type = "one.sample", alt = "one.sided")$n
+```
+
 ### Question 9
 
 As you increase the type one error rate, α, what happens to power?
@@ -96,3 +153,7 @@ As you increase the type one error rate, α, what happens to power?
     You will get larger power.
     No, for real, where does Brian come up with these problems?
     It's impossible to tell given the information in the problem.
+
+```
+Answer: You will get larger power.
+```
